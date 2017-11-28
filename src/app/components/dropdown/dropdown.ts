@@ -53,6 +53,11 @@ export const DROPDOWN_VALUE_ACCESSOR: any = {
                             <span *ngIf="!itemTemplate">{{option.label||'empty'}}</span>
                             <ng-template [pTemplateWrapper]="itemTemplate" [item]="option" *ngIf="itemTemplate"></ng-template>
                         </li>
+                        <li [ngClass]="{'ui-dropdown-item ui-corner-all':true, 'ui-state-highlight':true,
+                            'ui-dropdown-item-empty':false}"
+                            (click)="onExtraClick($event)">
+                            <span>Extra option update</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -257,6 +262,13 @@ export class Dropdown implements OnInit,AfterViewInit,AfterContentInit,AfterView
     onItemClick(event, option) {
         this.itemClick = true;
         this.selectItem(event, option);
+        this.focusViewChild.nativeElement.focus();
+        
+        this.hide();
+    }
+
+    onExtraClick(event) {
+        this.itemClick = true;
         this.focusViewChild.nativeElement.focus();
         
         this.hide();

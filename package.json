@@ -8,13 +8,19 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-components": "ngc -p tsconfig-release.json",
+    "build-assets": "gulp build-assets",
+    "build-styles": "node-sass src/assets/components -o src/assets/components",
+    "build-redistribute": "npm run build-components && npm run build-assets && npm run build-styles",
+    "pack": "rm -fdr resources && rm -fdr components && npm run build-redistribute"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/primefaces/primeng.git"
   },
   "devDependencies": {
+    "node-sass": "^4.5.3",
     "@angular/animations": "4.4.4",
     "@angular/cli": "1.4.3",
     "@angular/common": "4.4.4",
